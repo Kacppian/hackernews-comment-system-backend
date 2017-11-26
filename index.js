@@ -25,12 +25,11 @@ mongoPromise
 
 
 		app.get('/', (req, res)=> {
-			console.log(db.models.Comment.aggregate);
-			db.models.Comment.find({}, (err, data)=>{
+			db.models.Comment.find().sort({'timestamp': -1}).exec((err, data)=>{
 				if(err){
 					res.status(404).json({'error': err});
 				}
-		  		console.log(data);
+		  		// console.log(data);
 		  		res.status(200).type('json').json(data);
 		  	});
 
